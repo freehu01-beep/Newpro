@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gamezop | DhanRush</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; }
+    iframe { border: none; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <!-- TODO: Replace YOUR_GAMEZOP_ID with your real Gamezop ID -->
+  <iframe src="https://www.gamezop.com/?id=YOUR_GAMEZOP_ID"></iframe>
+
+  <script>
+    function getParams() {
+      const p = new URLSearchParams(window.location.search);
+      return {
+        uid: p.get("uid") || "0",
+        network: p.get("network") || "gamezop"
+      };
+    }
+
+    // Simple one-time reward after 60 seconds of play
+    setTimeout(() => {
+      const { uid, network } = getParams();
+      fetch(`/reward?uid=${encodeURIComponent(uid)}&network=${encodeURIComponent(network)}`)
+        .then(() => console.log("Gamezop reward sent for DhanRush."))
+        .catch(() => console.log("Failed to contact server."));
+    }, 60000);
+  </script>
+</body>
+</html>
