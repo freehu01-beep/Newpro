@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Adsterra Ad | DhanRush</title>
+</head>
+<body style="text-align:center;font-family:sans-serif;margin-top:40px;">
+  <h2>🎞️ Adsterra Rewarded Ad</h2>
+  <p>Watch this ad till the end to earn DhanRush coins.</p>
+
+  <!-- TODO: Paste your Adsterra rewarded ad tag/script here -->
+
+  <script>
+    function getParams() {
+      const p = new URLSearchParams(window.location.search);
+      return {
+        uid: p.get("uid") || "0",
+        network: p.get("network") || "adsterra"
+      };
+    }
+
+    // Simulate rewarded callback after 20 seconds
+    setTimeout(() => {
+      const { uid, network } = getParams();
+      fetch(`/reward?uid=${encodeURIComponent(uid)}&network=${encodeURIComponent(network)}`)
+        .then(() => alert("✅ Adsterra ad completed. DhanRush coins added!"))
+        .catch(() => alert("Ad complete, but failed to contact server."));
+      window.close();
+    }, 20000);
+  </script>
+</body>
+</html>
